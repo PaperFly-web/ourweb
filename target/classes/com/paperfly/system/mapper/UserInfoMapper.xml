@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paperfly.system.mapper.UserInfoMapper">
+    <insert id="addArticle" parameterType="com.paperfly.system.pojo.Article">
+        insert into articles (article, cno, no, article_create_time) values (#{article},#{cno},#{no},#{articleCreateTime});
+    </insert>
+    <select id="selectArticleByCno" resultType="com.paperfly.system.pojo.Article">
+        select `user`.user_name,article,cno,articles.no,article_create_time
+        from `user`
+        join articles on articles.`no`=user.no
+        where
+        articles.cno=#{cno}
+        order by article_create_time desc
+    </select>
+    <update id="modifyPassworrd" parameterType="com.paperfly.system.pojo.Modify">
+        update user set password=#{pwd} where no=#{no}
+    </update>
+    <update id="modifyNo" parameterType="com.paperfly.system.pojo.Modify">
+        update user set no=#{newNo} where no=#{no};
+    </update>
+    <update id="modifyUserName" parameterType="com.paperfly.system.pojo.Modify">
+        update user set user_name=#{userName} where no=#{no}
+    </update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paperfly.system.mapper.FileMapper">
+    <select id="selectThisClassFile" parameterType="com.paperfly.system.pojo.Info" resultType="com.paperfly.system.pojo.Info">
+        select file.* from file
+        where class_task_id=#{classTaskId}
+        and cno=#{cno}
+        and user_id=(select user_id from user where no=#{no})
+        limit #{page},12
+    </select>
+    <insert id="addFileInfo" parameterType="com.paperfly.system.pojo.Info">
+        insert into file(user_id,file_path, file_name, create_time,size,cno,class_task_id) values ((select user_id from user where no=#{no}),#{filePath},#{fileName},DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),#{size},#{cno},#{classTaskId})
+    </insert>
+    <select id="downAllMyTaskFile" resultType="com.paperfly.system.pojo.Info" parameterType="com.paperfly.system.pojo.Info">
+        select * from file where class_task_id=#{classTaskId}
+        and
+        user_id=(select user_id from user where no=#{no})
+    </select>
+    <delete id="deleteOneFile" >
+        delete from file where file_path=#{filePath}
+    </delete>
+    <select id="selectTaskFile"  resultType="com.paperfly.system.pojo.Info">
+        select file.*,user.user_name from file,user
+        where class_task_id=#{classTaskId}
+        and file.user_id=user.user_id
+        limit #{page},12
+    </select>
+</mapper>

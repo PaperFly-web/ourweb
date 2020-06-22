@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>PaperFly</title>
+
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/static/css/file.css}">
+    <link th:href="@{/static/css/class.css}" rel="stylesheet" type='text/css' media="all" />
+    <link rel="stylesheet" th:href="@{/static/css/fileStyle.css}">
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/static/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</head>
+    <body class="layui-layout-body">
+        <div class="layui-layout layui-layout-admin">
+            <div class="layui-header">
+                <div class="layui-logo"><a href="/views/success" id="main">PaperFly</a></div>
+                <ul class="layui-nav layui-layout-left">
+                    <li class="layui-nav-item"><a href="#">班号:[[${createCno}]]</a><input type="hidden" id="createCnoValue" th:value="${createCno}"></li>
+                    <li class="layui-nav-item"><a href="#">班级名称:[[${createCname}]]</a><input type="hidden" id="classTaskIdValue" th:value="${classTaskId}"><input type="hidden" id="createCnameValue" th:value="${createCname}"></li>
+                    <li class="layui-nav-item"><a href="#">任务名称:[[${taskName}]]</a><input type="hidden" id="taskNameValue" th:value="${taskName}"></li>
+                    <li class="layui-nav-item"><a href="#">创建人:[[${createName}]]</a><input type="hidden" id="createNameValue" th:value="${createName}"></li>
+                    <li class="layui-nav-item"><a href="#">创建人账号:[[${createNo}]]</a><input type="hidden" id="createNoValue" th:value="${createNo}"></li>
+                    <li class="layui-nav-item"><a th:href="@{'/toArticle?cno='+${createCno}}" >班级交流</a></li>
+                </ul>
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a th:href="@{/toModifyUserInfo}">
+                            个人中心
+                        </a>
+                    </li>
+                    <li class="layui-nav-item"><a href="/logout">退了</a></li>
+                </ul>
+            </div>
+
+            <div class="layui-side layui-bg-black">
+
+                <div class="layui-side-scroll">
+                    <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                    <ul class="layui-nav layui-nav-tree site-demo-nav">
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="#" id="myFile">我的文件</a>
+                       </li>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="#" id="uploadFile">上传文件</a>
+                        </li>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a th:href="@{'/returnClass/'+${createCno}}">返回班级</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-body">
+                <div class="newscol" id="showFile">
+                    <div class="agile-its">
+                        <h2>上传文件</h2>
+                        <div class="w3layouts">
+                            <p>文件不超过[[${fileMaxSize}]]M</p>
+                            <input type="hidden" th:value="${fileMaxSize}" id="fileMaxSize">
+                            <div class="photos-upload-view">
+                                <form id="upload" action="/upload" method="POST" enctype="multipart/form-data">
+                                    <div class="agileinfo">
+                                        <input type="submit" class="choose" value="选择文件">
+                                        <input type="hidden" name="cno" th:value="${createCno}">
+                                        <input type="hidden" name="classTaskId" th:value="${classTaskId}">
+                                        <input type="hidden" name="taskName" th:value="${taskName}">
+                                        <input type="hidden" name="userName" th:value="${createName}">
+                                        <input type="hidden" name="no" th:value="${createNo}">
+                                        <input type="hidden" name="cname" th:value="${createCname}">
+                                        <input type="file" id="fileselect"  th:name="file">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="submit" value="提交" class="btn btn-success" disabled>
+                                    </div>
+                                    <div id="messages">
+                                        <p th:text="${fileMsg}"></p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-footer">
+                <!-- 底部固定区域 -->
+                © paperfly
+            </div>
+
+        </div>
+    </div>
+    </body>
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <script th:src="@{/static/js/jquery.placeholder.min.js}"></script>
+    <script th:src="@{/static/js/jquery.waypoints.min.js}"></script>
+
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/static/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/static/layui/layui.all.js}"></script>
+
+    <script type="text/javascript" th:src="@{/static/myjs/file-task.js}"></script>
+    <script th:src="@{/static/js/validator.min.js}"></script>
+    <script th:src="@{/static/js/filedrag.js}"></script>
+    <script th:src="@{/static/js/modernizr-2.6.2.min.js}"></script>
+    <script th:src="@{/static/js/respond.min.js}"></script>
+    <script th:src="@{/static/js/main.js}"></script>
+
+
+</html>

@@ -1,0 +1,52 @@
+#textAndBtnDiv {
+    top: 85%;
+    width: 80%;
+    height: 300px;
+    position: fixed;
+}
+
+#textAndBtnDiv > button {
+    position: absolute;
+    left: 85%;
+    top: 3%;
+
+}
+
+#articlesTable {
+    position: absolute;
+    left: 5%;
+    top: 7%;
+}
+
+#textarea{
+    position: relative;
+    left: 8%;
+    top: 3%;
+    width: 75%;
+    opacity: 0.8;
+}
+
+.spanTime {
+    opacity: 0.3;
+}
+
+.spanArticles {
+    color: lightslategray;
+}
+
+.spanStuNum {
+    color: #46b8da;
+    position: relative;
+    top: -17px;
+}
+
+.spanCurrStuNum {
+    position: relative;
+    top: -17px;
+    color: #e7c3c3;
+}
+
+#returnTopA {
+    position: fixed;
+    left: 95%;;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paperfly.system.mapper.ClassMapper">
+    <insert id="createClass" parameterType="com.paperfly.system.pojo.Class">
+        insert into class(cno, cname, user_id) values (#{cno},#{cname},(select user_id from user where no=#{no}))
+    </insert>
+    <insert id="joinClass" parameterType="com.paperfly.system.pojo.Class">
+        insert into sc(cno, user_id) values (#{cno},(select user_id from user where no=#{no}))
+    </insert>
+    <select id="classIsExist" parameterType="String" resultType="String">
+        select cno from class where cno=#{cno}
+    </select>
+    <select id="selectJoinClass" parameterType="String" resultType="com.paperfly.system.pojo.Class">
+        select class.cno,class.cname,`user`.no FROM class join `user` on class.user_id=`user`.user_id
+        WHERE
+        class.cno in (select cno from sc join user on sc.user_id=`user`.user_id
+        WHERE
+        `user`.no=#{no})
+    </select>
+    <select id="selectCreateClass" parameterType="String" resultType="com.paperfly.system.pojo.Class">
+        SELECT class.cno,class.cname from class
+        where
+        class.user_id=(select `user`.user_id from user
+        where
+        `user`.no=#{no})
+    </select>
+    <insert id="createTask" parameterType="com.paperfly.system.pojo.Task">
+        insert into class_task(cno, task_name) values (#{cno},#{taskName})
+    </insert>
+    <select id="selectCreateTask" parameterType="String" resultType="com.paperfly.system.pojo.Task">
+        select * from class_task where cno=#{cno};
+    </select>
+    <select id="selectTaskName" resultType="String" >
+        select task_name from class_task where class_task_id=#{classTaskId}
+    </select>
+</mapper>

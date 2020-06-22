@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>PaperFly</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="stylish Sign in and Sign up Form A Flat Responsive widget, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<link th:href="@{/static/sign/css/style.css}" rel='stylesheet' type='text/css' media="all" />
+		<link href="//fonts.googleapis.com/css?family=Sansita:400,400i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+		<link href="//fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+	</head>
+	<body>
+		<h1 style="color: white">PaperFly作业一体化平台</h1>
+		<div class="form-w3ls">
+			<div class="form-head-w3l">
+				<h2>S</h2>
+			</div>
+			<div class="alert alert-warning" role="alert">
+				<span id="alertMsg" th:text="${msg}"></span>
+			</div>
+			<ul class="tab-group cl-effect-4">
+				<li class="tab active"><a href="#signin-agile">登录</a></li>
+				<li class="tab"><a href="#signup-agile">注册</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="signin-agile">
+					<form action="login" method="post">
+						<input type="text" name="no" id="sign-in-no" placeholder="手机号"  required="required">
+						<input type="password" name="password" placeholder="密码"  required="required">
+						<input type="submit" class="sign-in" value="登录" disabled="disabled">
+					</form>
+				</div>
+				<div id="signup-agile">
+					<form action="regist" method="post">
+						<input type="text" name="userName" placeholder="用户名"  required="required">
+						<input type="text" name="no" id="sign-up-no" placeholder="手机号"  required="required">
+						<input type="text" name="code"  placeholder="验证码" required="required">
+						<button type="button" class="btn btn-success">获取验证码</button>
+						<input type="password" name="password" id="password" placeholder="密码(至少包含6位字符)"  required="required">
+						<input type="password" id="re-password"  placeholder="确认密码" required="required">
+						<input type="submit" class="register" value="注册" disabled="disabled" >
+					</form>
+				</div>
+			</div>
+		</div>
+		<p class="copyright">&copy; PaperFly</p>
+	</body>
+	<script th:src='@{/static/js/jquery.min.js}'></script>
+	<script th:src="@{/static/sign/js/index.js}"></script>
+	<script th:src="@{/static/js/bootstrap.min.js}"></script>
+</html>
