@@ -18,7 +18,7 @@
 1.  前端博客项目启动
    - 1. 进入front-vue
    - 2. 打开命令台：输入npm install
-   - 2. 打开命令台：执行命令 npm run dev
+   - 3. 打开命令台：执行命令 npm run dev
 2.  xxxx
 3.  xxxx
 
