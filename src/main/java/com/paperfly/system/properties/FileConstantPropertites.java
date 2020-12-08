@@ -12,9 +12,11 @@ import org.springframework.stereotype.Component;
 @ToString
 @Component
 public class FileConstantPropertites {
+    public String blogStartFilePath="/usr/local/ourwebFile/blogFile/";
+    public long blogFileMaxSize=30l;
     public static long UnitM = 1048576l;
     private long fileMaxZize = 30l;
-    private String fileStartSavePath = "d:/upload/";
+    private String fileStartSavePath = "/usr/local/ourwebFile/classFile/";
     private String fileUploadSuccessInfo = "恭喜您文件上传成功!";
     private String fileUploadFaileInfo = "对不起，您的文件上传失败!可能超出了服务器承受范围!";
 }

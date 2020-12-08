@@ -15,12 +15,15 @@
         order by article_create_time desc
     </select>
     <update id="modifyPassworrd" parameterType="com.paperfly.system.pojo.Modify">
-        update user set password=#{pwd} where no=#{no}
+        update user set password=#{pwd}, update_time=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') where no=#{no}
     </update>
     <update id="modifyNo" parameterType="com.paperfly.system.pojo.Modify">
-        update user set no=#{newNo} where no=#{no};
+        update user set no=#{newNo}, update_time=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') where no=#{no};
     </update>
     <update id="modifyUserName" parameterType="com.paperfly.system.pojo.Modify">
-        update user set user_name=#{userName} where no=#{no}
+        update user set user_name=#{userName}, update_time=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') where no=#{no}
     </update>
+    <select id="selectAllUser" resultType="com.paperfly.system.pojo.User">
+        select user_id,user_name,no from user limit #{page},6
+    </select>
 </mapper>

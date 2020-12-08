@@ -28,4 +28,5 @@ public class User implements Serializable {
     String role;
     String perm;
     String code;
+    Integer page;
 }

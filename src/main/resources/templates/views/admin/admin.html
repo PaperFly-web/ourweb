@@ -12,7 +12,9 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo"><a href="/views/success" id="main">PaperFly</a></div>
+
         <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item"><a href="/selectOurWebData">网站数据</a></li>
             <li class="layui-nav-item"><a href="/logout">退了</a></li>
         </ul>
     </div>
@@ -46,7 +48,7 @@
             <button type="button" class="btn btn-danger" id="modifyPwdBtn">修改</button>
         </form>
         <br>
-        <label  class="col-sm-2 control-label">修改文件起始保存位置</label>
+        <label  class="col-sm-2 control-label">修改班级文件起始保存位置</label>
         <form class="form-inline" action="#">
             <div class="form-group">
                 <input type="text" class="form-control" id="modifyFileStartPath" placeholder="文件起始地址" >
@@ -54,12 +56,28 @@
             <button type="button" class="btn btn-danger" id="modifyfileStartPathBtn">更改</button>
         </form>
         <br>
-        <label  class="col-sm-2 control-label">修改文件最大尺寸</label>
+        <label  class="col-sm-2 control-label">修改班级文件最大尺寸</label>
         <form class="form-inline" action="#">
             <div class="form-group">
                 <input type="text" class="form-control" id="maxFileSize" placeholder="文件最大尺寸(M)" >
             </div>
             <button type="button" class="btn btn-danger" id="modifyMaxFileSizeBtn">更改</button>
+        </form>
+        <br>
+        <label  class="col-sm-2 control-label">修改博客文件起始保存位置</label>
+        <form class="form-inline" action="#">
+            <div class="form-group">
+                <input type="text" class="form-control" id="modifyBlogFileStartPath" placeholder="文件起始地址" >
+            </div>
+            <button type="button" class="btn btn-danger" id="modifyBlogfileStartPathBtn">更改</button>
+        </form>
+        <br>
+        <label  class="col-sm-2 control-label">修改博客文件最大尺寸</label>
+        <form class="form-inline" action="#">
+            <div class="form-group">
+                <input type="text" class="form-control" id="maxBlogFileSize" placeholder="文件最大尺寸(M)" >
+            </div>
+            <button type="button" class="btn btn-danger" id="modifyBlogMaxFileSizeBtn">更改</button>
         </form>
         <br>
         <label  class="col-sm-2 control-label">修改用户角色</label>
@@ -82,6 +100,22 @@
                 <input type="text" class="form-control" id="userPerm" placeholder="修改用户权限" >
             </div>
             <button type="button" class="btn btn-danger" id="modifyUserPermBtn">更改</button>
+        </form>
+        <br>
+        <label  class="col-sm-2 control-label">注册用户</label>
+        <form class="form-inline" action="#">
+            <div class="form-group">
+                <input type="text" class="form-control" id="registerUserNo" placeholder="手机号" >
+            </div>
+            <button type="button" class="btn btn-success" id="registerUserBtn">注册</button>
+        </form>
+        <br>
+        <label  class="col-sm-2 control-label">修改短信模板</label>
+        <form class="form-inline" action="#">
+            <div class="form-group">
+                <input type="text" class="form-control" id="updataTemplateCode" placeholder="短信模板代码" >
+            </div>
+            <button type="button" class="btn btn-success" id="updataTemplateCodeBtn">修改</button>
         </form>
     </div>
 </div>

@@ -38,7 +38,10 @@ public class ViewController {
     @PostMapping("login")
     public String login(User user, Map<String,Object> map) {
         String login = userService.login(user, map);
-        return login;
+        if(login.equals("sign")){
+            return "sign";
+        }
+        return "redirect:"+login;
     }
 
     @PostMapping("regist")
@@ -57,12 +60,12 @@ public class ViewController {
         return "views/" + name;
     }
 
-    @RequestMapping("error/unauthorized")
+    @GetMapping("error/unauthorized")
     public String toUnauthorized() {
         return "error/unauthorized";
     }
 
-    @RequestMapping("send")
+    @GetMapping("send")
     @ResponseBody
     public String sendSms(String no) {
         String info = userService.send(no,"code:");

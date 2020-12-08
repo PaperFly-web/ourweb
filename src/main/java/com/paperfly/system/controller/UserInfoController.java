@@ -2,6 +2,7 @@ package com.paperfly.system.controller;
 
 import com.paperfly.system.pojo.Article;
 import com.paperfly.system.pojo.Modify;
+import com.paperfly.system.pojo.User;
 import com.paperfly.system.service.UserInfoService;
 import com.paperfly.system.service.UserService;
 import com.paperfly.system.utils.DateFomatUtil;
@@ -79,7 +80,7 @@ public class UserInfoController {
         String info = userInfoService.modifyPassworrd(modify);
         return info;
     }
-    @RequestMapping("modifyNoSend")
+    @GetMapping("modifyNoSend")
     @ResponseBody
     public String sendSms(String no) {
         String info = userService.send(no,"modifyNoCode:");
@@ -102,4 +103,13 @@ public class UserInfoController {
         String info = userInfoService.modifyUserName(modify);
         return info;
     }
+    @PostMapping("selectAllUser")
+    @ResponseBody
+    @RequiresAuthentication
+    public List<User> selectAllUser(User user){
+        user.setPage(user.getPage()*6);
+        List<User> users = userInfoService.selectAllUser(user);
+        return users;
+    }
+
 }

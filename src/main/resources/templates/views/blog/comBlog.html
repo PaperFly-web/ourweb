@@ -22,6 +22,31 @@
         <div class="layui-logo"><a href="/views/success" id="main">PaperFly</a></div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
+
+                <div class="dropdown">
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            筛选 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="byHot" style="color: black">根据热度</a></li>
+                            <li><a href="#" id="byTime" style="color: black">根据时间</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li>  <a href="#" id="showMySelfBlog" style="color: black">
+                                看自己
+                            </a></li>
+                            <li>
+                                <a href="#" id="showAllBlog" style="color: black">
+                                    看大家
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="layui-nav-item">
                 <a th:href="@{/toMakeBlog}">
                     发布新博客
                 </a>
@@ -43,9 +68,36 @@
     </div>
 
 
+    <div class="myBody">
+        <div class="newscol" id="showFile"></div>
+        <div class="blogPageDiv">
+                <nav aria-label="Page navigation" >
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous" class="blogPage">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href='#' class="blogPage">1</a></li>
+                        <li><a href="#" class="blogPage">2</a></li>
+                        <li><a href="#" class="blogPage">3</a></li>
+                        <li><a href="#" class="blogPage">4</a></li>
+                        <li><a href="#" class="blogPage">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next" class="blogPage">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-    <div >
-        <a href="/pdfjs/web/viewer.html?file=http://localhost:8083/displayPDF" >111</a>
+        </div>
+
+        <br>
+        <hr>
+        <div class="newscol" id="classNo">
+
+        </div>
     </div>
 
     <div class="blog-footer">

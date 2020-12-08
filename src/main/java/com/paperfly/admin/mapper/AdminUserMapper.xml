@@ -9,4 +9,16 @@
     <update id="modifyUserPerm" >
         update user set perm=#{perm} where no=#{no}
     </update>
+    <select id="selectAllUserSignIn" resultType="com.paperfly.system.pojo.SignIn">
+        SELECT max(sign_in.create_time) as recently_sign_in,`user`.user_name,`user`.no,COUNT(*) as month_sum_sign_in
+        FROM `user`
+        left join sign_in
+        on sign_in.no=`user`.no
+    GROUP BY `user`.no
+    order by month_sum_sign_in desc ,recently_sign_in desc
+    limit #{page},12
+    </select>
+    <select id="selectOurWebData" resultType="com.paperfly.admin.pojo.WebData">
+        CALL selectWebData();
+    </select>
 </mapper>

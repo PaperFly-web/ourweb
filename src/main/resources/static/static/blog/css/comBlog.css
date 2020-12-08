@@ -1,3 +1,38 @@
 .blog-footer{
     position:fixed;left:0px;right:0;bottom:0;height:44px;line-height:44px;padding:0 15px;background-color:#eee
 }
+/*# sourceMappingURL=style.css.map */
+.newscol {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+/*这里就是消息盒子的布局方式justify-content: flex-start;
+	flex-wrap: wrap;处理盒子超出规定大小换行处理，和布局方式为开头布局*/
+.newsbox {
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    background: white;
+    border-radius: 7px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,.3);
+}
+/*这个设置消息盒子的大小的阴影*/
+.newsbox p { font-size: 10px }
+.newsbox h1,h2,h3,h4,h5,h6{
+    color: black;
+}
+.myBody{
+    margin-left: 7%;
+}
+.classNoBox {
+    padding: 10px;
+    margin: 10px;
+    background: white;
+    border-radius: 7px;
+    box-shadow: 5px 5px 20px rgba(0,0,0,.3);
+}
+.blogPageDiv{
+    position: relative;
+    left: 37%;
+}

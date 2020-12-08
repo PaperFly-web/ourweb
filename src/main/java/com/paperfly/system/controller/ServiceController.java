@@ -71,7 +71,7 @@ public class ServiceController {
         return "views/success";
     }
 
-    @RequestMapping("selectJoinClass")
+    @GetMapping("selectJoinClass")
     @ResponseBody
     @RequiresAuthentication
     public List<Class> selectJoinClass() {
@@ -82,7 +82,7 @@ public class ServiceController {
         return aClass;
     }
 
-    @RequestMapping("selectCreateClass")
+    @GetMapping("selectCreateClass")
     @ResponseBody
     @RequiresAuthentication
     public List<Class> selectCreateClass() {
@@ -90,7 +90,7 @@ public class ServiceController {
         List<Class> aClass = classService.selectCreateClass((String) session.getAttribute("no"));
         return aClass;
     }
-    @RequestMapping("selectCreateTask")
+    @GetMapping("selectCreateTask")
     @ResponseBody
     @RequiresAuthentication
     public List<Task> selectCreateTask(String cno) {

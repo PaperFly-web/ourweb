@@ -45,14 +45,27 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 
     // output file information
     function ParseFile(file) {
-        Output(
-            /*"<p>名称: <strong>" + file.name +
-            "<br>"+
-            "</strong> 类型: <strong>" + file.type +
-            "<br>"+
-            "</strong> 大小: <strong>" + file.size +
-            "</strong> bytes</p>"*/
-        );
+        var file = document.getElementById("fileselect").files[0];
+        var fileSize=(file.size/1024)/1024;
+        fileSize=fileSize.toFixed(2);//保留俩位小数
+        var fileMaxSize = $("#fileMaxSize").val();
+        if(fileSize>fileMaxSize){
+            $(".btn-success").attr("disabled","disabled");
+            Output(
+                "<p>文件超出规定大小!</p>"
+            );
+        }else {
+            $(".btn-success").removeAttr("disabled");
+            Output(
+                "<p>名称: <strong>" + file.name +
+                "<br>"+
+                "</strong> 类型: <strong>" + file.type +
+                "<br>"+
+                "</strong> 大小: <strong>" + fileSize +
+                "</strong> M</p>"
+            );
+        }
+
     }
 
 

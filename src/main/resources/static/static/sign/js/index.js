@@ -59,13 +59,13 @@ $(function () {
             if(pwd!=''){
                 alertMsg.text("密码不符合规定!")
             }
-
+            
         }else {
             // alert("密码符合规范")
             rexPwd=true;
             alertMsg.text("")
         }
-    })
+    });
     //注册验证密码是否一致
     $("#re-password").blur(function () {
         var pwd=$("#password").val();

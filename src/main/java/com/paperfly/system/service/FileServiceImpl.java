@@ -39,6 +39,7 @@ public class FileServiceImpl implements FileService {
     Logger logger= LoggerFactory.getLogger(getClass());
     @Override
     public void uploadFile(Task task, MultipartFile file, Map<String,Object> map,HttpSession session) {
+        String fileType;
         Info fileInfo=new Info();
         long size = file.getSize();
         if(size>constantPropertites.getFileMaxZize()*constantPropertites.UnitM){
@@ -50,10 +51,11 @@ public class FileServiceImpl implements FileService {
         }
         // 获取原始名字
         String fileName = file.getOriginalFilename();
+        fileType=fileName.substring(fileName.lastIndexOf("."));
         // 文件保存路径
         String filePath = constantPropertites.getFileStartSavePath()+task.getCno()+"/"+session.getAttribute("no")+"/";
         // 文件重命名，防止重复
-        filePath = filePath + UUID.randomUUID() +"—"+ fileName;
+        filePath = filePath + UUID.randomUUID()+UUID.randomUUID()+fileType;
         System.out.println(filePath);
         // 文件对象
         File dest = new File(filePath);

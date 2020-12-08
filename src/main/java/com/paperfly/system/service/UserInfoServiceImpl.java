@@ -3,6 +3,7 @@ package com.paperfly.system.service;
 import com.paperfly.system.mapper.UserInfoMapper;
 import com.paperfly.system.pojo.Article;
 import com.paperfly.system.pojo.Modify;
+import com.paperfly.system.pojo.User;
 import com.paperfly.system.utils.IsAssignSizeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,5 +84,11 @@ public class UserInfoServiceImpl implements UserInfoService {
         modify.setNo((String) session.getAttribute("no"));
         userInfoMapper.modifyUserName(modify);
         return "恭喜您,用户名修改成功!";
+    }
+
+    @Override
+    public List<User> selectAllUser(User user) {
+        List<User> users = userInfoMapper.selectAllUser(user);
+        return users;
     }
 }

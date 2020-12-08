@@ -1,9 +1,18 @@
+var alertMsg;
+var rexPhnoe=/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/;
+var re_rexPwd=false;
+var rexpwd=false;
+var rexNo=false;
 $(function () {
-    var rexPhnoe=/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/;
-    var re_rexPwd=false;
-    var rexpwd=false;
-    var rexNo=false;
-    var alertMsg=$("#alertMsg");
+    alertMsg=$("#alertMsg");
+    modifyUserMsg();
+    modifyUserPermAndRole();
+    modifyClassMsg();
+    modifyBlogMsg();
+    registerUser();
+    updataTemplateCode();
+});
+function modifyUserMsg() {
     $("#password").blur(function () {
         var rex=/^[A-Z a-z 0-9 +]{6}$/;
         var pwd=$("#password").val();
@@ -97,42 +106,9 @@ $(function () {
 
 
     });
-    $("#modifyfileStartPathBtn").click(function () {
-            var filePath=$("#modifyFileStartPath").val();
-            if(filePath==""){
-                alertMsg.text("文件地址不能为空!");
-            }else {
-                $.post(
-                    "adminModifySystemPropertites",
-                    "fileStartSavePath="+filePath+"&fileMaxZize="+-1,
-                    function (data) {
-                        alertMsg.text(data);
-                    },
-                    "text"
-                )
-            }
-    });
-    $("#modifyMaxFileSizeBtn").click(function () {
-        var fileSize=$("#maxFileSize").val();
-        if(fileSize<=0||fileSize==''){
-            alertMsg.text("最低尺寸不能小于等于0!");
-        }else {
-            $.post(
-                "adminModifySystemPropertites",
-                "fileStartSavePath="+""+"&fileMaxZize="+fileSize,
-                function (data) {
-                    alertMsg.text(data);
-                },
-                "text"
-            )
-        }
-        $("#modifyFileStartPath").focus(function () {
-            alertMsg.text("");
-        });
-        $("#maxFileSize").focus(function () {
-            alertMsg.text("");
-        });
-    });
+
+}
+function modifyUserPermAndRole() {
     $("#modifyUserRoleBtn").click(function () {
         var userRole=$("#userRole").val();
         var roleNo=$("#roleNo").val();
@@ -169,4 +145,147 @@ $(function () {
             )
         }
     });
-});
+}
+function modifyClassMsg() {
+
+    $("#modifyfileStartPathBtn").click(function () {
+        var filePath=$("#modifyFileStartPath").val();
+        if(filePath==""){
+            alertMsg.text("文件地址不能为空!");
+        }else {
+            $.post(
+                "adminModifySystemPropertites",
+                "fileStartSavePath="+filePath+"&fileMaxZize="+-1,
+                function (data) {
+                    alertMsg.text(data);
+                },
+                "text"
+            )
+        }
+    });
+    $("#modifyMaxFileSizeBtn").click(function () {
+        var fileSize=$("#maxFileSize").val();
+        if(fileSize<=0||fileSize==''){
+            alertMsg.text("最低尺寸不能小于等于0!");
+        }else {
+            $.post(
+                "adminModifySystemPropertites",
+                "fileStartSavePath="+"-1"+"&fileMaxZize="+fileSize,
+                function (data) {
+                    alertMsg.text(data);
+                },
+                "text"
+            )
+        }
+        $("#modifyFileStartPath").focus(function () {
+            alertMsg.text("");
+        });
+        $("#maxFileSize").focus(function () {
+            alertMsg.text("");
+        });
+    });
+}
+function modifyBlogMsg() {
+    $("#modifyBlogfileStartPathBtn").click(function () {
+        var filePath=$("#modifyBlogFileStartPath").val();
+        if(filePath==""){
+            alertMsg.text("文件地址不能为空!");
+        }else {
+            $.post(
+                "adminModifyBlogPropertites",
+                "blogStartFilePath="+filePath+"&blogFileMaxZize="+-1,
+                function (data) {
+                    alertMsg.text(data);
+                },
+                "text"
+            )
+        }
+    });
+    $("#modifyBlogMaxFileSizeBtn").click(function () {
+        var fileSize=$("#maxBlogFileSize").val();
+        if(fileSize<=0||fileSize==''){
+            alertMsg.text("最低尺寸不能小于等于0!");
+        }else {
+            $.post(
+                "adminModifyBlogPropertites",
+                "blogStartFilePath="+"-1"+"&blogFileMaxSize="+fileSize,
+                function (data) {
+                    alertMsg.text(data);
+                },
+                "text"
+            )
+        }
+        $("#modifyBlogFileStartPath").focus(function () {
+            alertMsg.text("");
+        });
+        $("#maxBlogFileSize").focus(function () {
+            alertMsg.text("");
+        });
+    });
+}
+function registerUser() {
+    var noIsRight=false;
+    var no=$("#registerUserNo").val();
+    $("#registerUserNo").focus(function () {
+        alertMsg.text("");
+    });
+    $("#registerUserNo").blur(function () {
+        no=$("#registerUserNo").val();
+        if(no!=''){
+            if(rexPhnoe.test(no)){
+                noIsRight=true;
+            }else {
+                noIsRight=false;
+                alertMsg.text("手机号不正确!");
+            }
+        }
+    });
+    $("#registerUserBtn").click(function () {
+        // alert("注册");
+        if(noIsRight){
+            $.ajax({
+                url:"adminRegist",
+                type:"post",
+                data:"no="+no+"&password=123456&userName=paperfly",
+                dataType:"text",
+                success:function (data) {
+                    alertMsg.text(data);
+                }
+            })
+        }else {
+            alertMsg("请填写正确的手机号!");
+        }
+
+    })
+}
+function updataTemplateCode() {
+    var isRight=false;
+    var code=$("#updataTemplateCode").val();
+    $("#updataTemplateCode").focus(function () {
+        alertMsg.text("");
+    });
+    $("#updataTemplateCode").blur(function () {
+        code=$("#updataTemplateCode").val();
+        if(code!=''){
+            isRight=true;
+        }else {
+            isRight=false;
+        }
+    });
+    $("#updataTemplateCodeBtn").click(function () {
+        if(isRight){
+            $.ajax({
+                url:"/updataTemplateCode",
+                type:"post",
+                data:"templateCode="+code,
+                dataType:"text",
+                success:function (data) {
+                    alertMsg.text(data);
+                }
+            })
+        }else {
+            alertMsg.text("模板代码不能为空!");
+        }
+
+    })
+}

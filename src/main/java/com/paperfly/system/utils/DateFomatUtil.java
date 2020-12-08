@@ -17,4 +17,24 @@ public class DateFomatUtil {
         }
         return parse;
     }
+    public static Date stringToDate(String time,String fomat){
+        SimpleDateFormat sdf2 = new SimpleDateFormat(fomat);
+        Date dateTime=null;
+        try {
+            dateTime= sdf2. parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateTime;
+    }
+    public static String getCurrentYear(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return sdf.format(date);
+    }
+    public static String getCurrentMonth(){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM");
+        Date date = new Date();
+        return sdf.format(date);
+    }
 }

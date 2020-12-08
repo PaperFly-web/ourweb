@@ -54,17 +54,7 @@ public class ShiroConfig {
         manager.setRealm(userRealm);
         return manager;
     }
-    /*@Bean("securityManager")
-    public DefaultWebSecurityManager getManager() {
-        return new DefaultWebSecurityManager();
-    }
-    @EventListener
-    public void handleContextRefresh(ContextRefreshedEvent event,@Qualifier("userRealm") UserRealm userRealm) {
-        ApplicationContext context = event.getApplicationContext();
-        DefaultWebSecurityManager manager = (DefaultWebSecurityManager) context.getBean("securityManager");
-        DefaultWebSessionManager sessionManager=(DefaultWebSessionManager)context.getBean("sessionManager");
-        manager.setRealm(userRealm);
-    }*/
+
     @Bean//这个是Shiro的过滤工厂
     public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("getManager") DefaultWebSecurityManager manager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -72,6 +62,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager(manager);
         //设置登录失败的url登录失败后会重定向到这个路径
         shiroFilterFactoryBean.setLoginUrl("/");
+
         //设置未授权请求的url Authorization
         shiroFilterFactoryBean.setUnauthorizedUrl("error/unauthorized");
         Map<String, String> filterMap = new LinkedHashMap<>();
@@ -81,7 +72,7 @@ public class ShiroConfig {
         filterMap.put("/index", "anon");
         filterMap.put("/index.html", "anon");
         filterMap.put("/regist", "anon");
-        filterMap.put("/logout", "logout");
+        filterMap.put("/logout", "logout");//访问  /logout  这个路径，就代表退出
         filterMap.put("/login","anon");
         filterMap.put("/send","anon");
         filterMap.put("/**","authc");//设置所有访问都不行
